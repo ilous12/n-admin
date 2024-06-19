@@ -1,15 +1,19 @@
 import { useState } from "react";
 
-function TodoInput({ onTodoAdd }) {
-  const [inputText, setInputText] = useState("");
+interface TodoInputProps {
+  onTodoAdd(x: string | null): unknown;
+}
 
-  const handleInput = (event) => {
+function TodoInput({ onTodoAdd }: TodoInputProps) {
+  const [inputText, setInputText] = useState<string>("");
+
+  const handleInput = (event: { target: { value: unknown } }) => {
     const value = event.target.value;
     console.log(value);
-    setInputText(value);
+    setInputText(value as string);
   };
 
-  const handleClick = (event) => {
+  const handleClick = () => {
     console.log("handleClick");
     localStorage.setItem(inputText, inputText);
     onTodoAdd(inputText);

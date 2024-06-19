@@ -18,12 +18,12 @@ function fetchTodos() {
 }
 
 function App() {
-  const [todos, setTodos] = useState(fetchTodos());
+  const [todos, setTodos] = useState<(string | null)[]>(fetchTodos());
   console.log("App");
 
   const removeTodo = (todo: string) => {
     setTodos((currentTodos) => {
-      return currentTodos.filter((item: string) => {
+      return currentTodos.filter((item: string | null) => {
         return todo != item;
       });
     });
